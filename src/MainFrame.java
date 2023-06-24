@@ -48,6 +48,11 @@ public class MainFrame extends javax.swing.JFrame {
         jTableClients = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 255));
 
@@ -137,6 +142,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         jBtnDelete.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
         jBtnDelete.setText("Delete");
+        jBtnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnDeleteActionPerformed(evt);
+            }
+        });
 
         jTableClients.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -228,6 +238,22 @@ public class MainFrame extends javax.swing.JFrame {
         jTxtPhone.setText("");
         jTxtAddress.setText("");
     }//GEN-LAST:event_jBtnClearActionPerformed
+
+    private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeleteActionPerformed
+        int row = jTableClients.getSelectedRow();
+        
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "Please select one row",
+                                            "Selec row",JOptionPane.ERROR_MESSAGE);
+        } else {
+            DefaultTableModel model = (DefaultTableModel) jTableClients.getModel();
+            model.removeRow(row);
+        }
+    }//GEN-LAST:event_jBtnDeleteActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
