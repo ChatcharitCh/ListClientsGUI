@@ -1,4 +1,7 @@
 
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -51,6 +54,9 @@ public class MainFrame extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -254,6 +260,26 @@ public class MainFrame extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try {
+            FileInputStream file = new FileInputStream("file.bin");
+            ObjectInputStream input = new ObjectInputStream(file);
+            Vector<Vector> tableData = (Vector<Vector>)input.readObject();
+            input.close();
+            file.close();
+            
+            DefaultTableModel model = (DefaultTableModel) jTableClients.getModel();
+            for (int i = 0; i < tableData.size(); i++) {
+                Vector row = tableData.get(i);
+                model.addRow(new Object[]{row.get(0), row.get(1), row.get(2), row.get(3)});
+            }
+            
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
