@@ -196,7 +196,25 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAddActionPerformed
+        String name = jTxtName.getText();
+        String email = jTxtEmail.getText();
+        String telephone = jTxtPhone.getText();
+        String address = jTxtAddress.getText();
         
+        if (name.isEmpty() || email.isBlank() || telephone.isEmpty() || address.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter all fields",
+                                                "Try again",
+                                                JOptionPane.ERROR_MESSAGE);
+        } else {
+            DefaultTableModel model = (DefaultTableModel) jTableClients.getModel();
+            model.addRow(new Object[]{name, email, telephone, address});
+            
+            jTxtName.setText("");
+            jTxtEmail.setText("");
+            jTxtPhone.setText("");
+            jTxtPhone.setText("");
+            
+        }
     }//GEN-LAST:event_jBtnAddActionPerformed
 
     /**
