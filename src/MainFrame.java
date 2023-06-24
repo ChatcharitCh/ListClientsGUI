@@ -3,9 +3,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.MessageFormat;
 import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -52,13 +54,14 @@ public class MainFrame extends javax.swing.JFrame {
         jBtnExit = new javax.swing.JButton();
         javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
         jTableClients = new javax.swing.JTable();
-        javax.swing.JButton jBtnDelete1 = new javax.swing.JButton();
-        javax.swing.JButton jBtnDelete2 = new javax.swing.JButton();
+        javax.swing.JButton jBtnPrint = new javax.swing.JButton();
+        javax.swing.JButton jBtnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Clients Dashboard");
-        setMinimumSize(new java.awt.Dimension(900, 600));
-        setPreferredSize(new java.awt.Dimension(900, 600));
+        setMaximumSize(new java.awt.Dimension(1200, 500));
+        setMinimumSize(new java.awt.Dimension(1072, 576));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -172,19 +175,19 @@ public class MainFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableClients);
 
-        jBtnDelete1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
-        jBtnDelete1.setText("Delete");
-        jBtnDelete1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnPrint.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        jBtnPrint.setText("Print");
+        jBtnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnDelete1ActionPerformed(evt);
+                jBtnPrintActionPerformed(evt);
             }
         });
 
-        jBtnDelete2.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
-        jBtnDelete2.setText("Delete");
-        jBtnDelete2.addActionListener(new java.awt.event.ActionListener() {
+        jBtnDelete.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        jBtnDelete.setText("Delete");
+        jBtnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnDelete2ActionPerformed(evt);
+                jBtnDeleteActionPerformed(evt);
             }
         });
 
@@ -198,22 +201,17 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBtnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                                .addComponent(jBtnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jBtnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)))))
+                                .addGap(36, 36, 36))
+                            .addComponent(jScrollPane1))))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(440, 440, 440)
-                    .addComponent(jBtnDelete2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(448, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,15 +224,11 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 22, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBtnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBtnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jBtnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBtnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(525, Short.MAX_VALUE)
-                    .addComponent(jBtnDelete2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -245,9 +239,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -331,13 +323,29 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowOpened
 
-    private void jBtnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDelete1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBtnDelete1ActionPerformed
+    private void jBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPrintActionPerformed
+        MessageFormat header = new MessageFormat("Printing in progress");
+        MessageFormat footer = new MessageFormat("page {0, number, integer}");
+        
+        try {
+            jTableClients.print(JTable.PrintMode.NORMAL, header, footer);
+        } catch (Exception e) {
+            System.err.format("No Printer found", e.getMessage());
+        }
+    }//GEN-LAST:event_jBtnPrintActionPerformed
 
-    private void jBtnDelete2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDelete2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBtnDelete2ActionPerformed
+    private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeleteActionPerformed
+        int row = jTableClients.getSelectedRow();
+        
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "Please select one row",
+                                                "Select row",
+                                                JOptionPane.ERROR_MESSAGE);
+        } else {
+            DefaultTableModel model = (DefaultTableModel) jTableClients.getModel();
+            model.removeRow(row);
+        }
+    }//GEN-LAST:event_jBtnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
