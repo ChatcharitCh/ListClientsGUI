@@ -1,6 +1,8 @@
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -258,7 +260,22 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnDeleteActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTableClients.getModel();
+        Vector<Vector> tableData = (Vector<Vector>)model.getDataVector();
+        
+        // Save data
+         try {
+            FileOutputStream file = new FileOutputStream("file.bin");
+            ObjectOutputStream output = new ObjectOutputStream(file);
+
+            output.writeObject(tableData);
+            output.close();
+            file.close();
+            
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_formWindowClosing
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
