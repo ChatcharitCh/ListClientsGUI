@@ -80,6 +80,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         jBtnClear.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
         jBtnClear.setText("Clear");
+        jBtnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnClearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -212,10 +217,17 @@ public class MainFrame extends javax.swing.JFrame {
             jTxtName.setText("");
             jTxtEmail.setText("");
             jTxtPhone.setText("");
-            jTxtPhone.setText("");
+            jTxtAddress.setText("");
             
         }
     }//GEN-LAST:event_jBtnAddActionPerformed
+
+    private void jBtnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnClearActionPerformed
+        jTxtName.setText("");
+        jTxtEmail.setText("");
+        jTxtPhone.setText("");
+        jTxtAddress.setText("");
+    }//GEN-LAST:event_jBtnClearActionPerformed
 
     /**
      * @param args the command line arguments
